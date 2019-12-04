@@ -1,21 +1,34 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import index from '../views/index.vue'
-import Not from '../views/404.vue'
-
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "index",
-    component: index
+  { path: "/",name:'index',redirect:"/index",component:()=>import("@/views/layout"),
+    children:[
+      {path:"/index",name:"Index",component:() => import ('../views/index/index.vue'),}
+          ]
   },
-  {
-    path: "*",
-    name: "not",
-    component: Not
-  }
+
+  { path: "/study",name: "Study",component:()=>import("@/views/layout"),
+    children:[
+      { path: "/studyInfo",name: "StudyInfo",component:()=>import("@/views/study"), }
+    ]
+  },
+  
+  { path: "/life",name: "Life",component:()=>import("@/views/layout"),
+  children:[
+    { path: "/lifeInfo", name: "LifeInfo",component:()=>import("@/views/life"), }
+  ]
+  },
+
+  { path: "/myself",name: "Myself",component:()=>import("@/views/layout"),
+    children:[
+      { path: "/myselfInfo", name: "MyselfInfo",component:()=>import("@/views/myself"), }
+    ]
+  },
+
+
+  {path:'*',name: "Not", component:()=>import("@/views/404.vue")}
 ];
 
 const router = new VueRouter({
