@@ -18,8 +18,7 @@
             </el-menu>
                 </el-col>
                 <el-col :span="6">
-                    <div class='login'> 
-                        
+                    <div class='login'>
                         <div v-if = "Login"> 
                             <span>欢迎您：{{Username}}</span>
                             <span @click='logout'>退出</span>
@@ -79,9 +78,13 @@ export default {
 </script>
 <style lang="scss" scope>
 .index{
-   .header{
-       background-color: #fff;
+    position:sticky;
+    top:0;
+    left: 0;
+    z-index: 999;
     
+   .header{
+        background-color: #fff;
        
        .nav{
            width: 60%;

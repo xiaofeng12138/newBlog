@@ -1,17 +1,32 @@
 <template>
     <div>
-        这是一个首页的页面
         <Carousel />
+        <ArtcleList />
+        <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000">
+        </el-pagination>
     </div>
 </template>
 <script>
 import Carousel from './components/carousel'
+import ArtcleList from './components/articleList'
 export default {
-    components:{Carousel}
+    components:{Carousel,ArtcleList},
+    data() {
+        return {
+            
+        }
+    },
+    
     
 }
 </script>
 <style lang="scss" scope>
+.el-pagination{
+    text-align: center;
+}
 
 </style>
 

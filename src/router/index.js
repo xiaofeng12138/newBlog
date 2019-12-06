@@ -26,6 +26,12 @@ const routes = [
       { path: "/myselfInfo", name: "MyselfInfo",component:()=>import("@/views/myself"), }
     ]
   },
+  { path: "/artDetail",name: "ArtDetail",component:()=>import("@/views/layout"),
+    children:[
+      {path:'/artDetailInfo',name: "ArtDetailInfo", component:()=>import("@/views/artDetail")},
+    ]
+  },
+
    {path:'/login',name: "Login", component:()=>import("@/views/login")},
 
 

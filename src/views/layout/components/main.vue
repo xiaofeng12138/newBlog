@@ -1,7 +1,10 @@
 <template>
-    <div class="box">
-       <router-view />
-    </div>
+<div class="boxWrap">
+     <div class="box">
+          <router-view />
+        </div>
+     <div class="r"></div>
+     </div>
 </template>
 <script>
 export default {
@@ -9,13 +12,21 @@ export default {
 }
 </script>
 <style lang="scss" scope>
-.box{
+.boxWrap{
+    display: flex;
     width: 60%;
-    height: 500px;
     margin: auto;
-    // background-color: pink;
+    // height: 500px;
     margin-top:20px;
-    
+    justify-content: space-between;
+.box{
+    width: 72%;
+    // background-color: #ccc;
+}
+ .r{
+    width: 25%;
+    border:2px solid rgb(255, 0, 234)
+    }
 }
 </style>
 
