@@ -26,6 +26,7 @@ const routes = [
       { path: "/myselfInfo", name: "MyselfInfo",component:()=>import("@/views/myself"), }
     ]
   },
+   {path:'/login',name: "Login", component:()=>import("@/views/login")},
 
 
   {path:'*',name: "Not", component:()=>import("@/views/404.vue")}

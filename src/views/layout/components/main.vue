@@ -13,7 +13,9 @@ export default {
     width: 60%;
     height: 500px;
     margin: auto;
-    background-color: pink;
+    // background-color: pink;
+    margin-top:20px;
+    
 }
 </style>
 

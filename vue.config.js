@@ -55,15 +55,22 @@ module.exports = {
     hot: true, // 开启热加载
     hotOnly: false,
     // proxy: null, 
-    // proxy: {     // 设置代理
-    //   '/devApi': {
-    //       target: "http://www.web-jshtml.cn/productapi/token", //API服务器的地址  http://www.web-jshtml.cn/api
-    //       changeOrigin: true,
-    //       pathRewrite: {
-    //           '^/devApi': ''    //其实这是一个正则表达式  已devApi 开头的
-    //       }
-    //   }
-    // },
+    proxy: {     // 设置代理
+      '/api':{
+        target: 'http://localhost:5050/',  //目标接口域名
+        changeOrigin: true,  //是否跨域
+        pathRewrite: {
+          '^/api':''   //重写接口
+        }
+       }
+      // '/devApi': {
+      //     target: "http:127.0.0.1:5050/devApi", //API服务器的地址  http://www.web-jshtml.cn/api
+      //     changeOrigin: true,
+      //     pathRewrite: {
+      //         '^/devApi': ''    //其实这是一个正则表达式  已devApi 开头的
+      //     }
+      // }
+    },
     overlay: { // 全屏模式下是否显示脚本错误
       warnings: true,
       errors: true
@@ -74,5 +81,5 @@ module.exports = {
   /**
    * 第三方插件配置
    */
-  pluginOptions: {}
+  pluginOptions: {},
 }

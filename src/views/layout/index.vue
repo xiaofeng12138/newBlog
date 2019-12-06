@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div class="note" :style ="note">
         <Header/>
         <Main/>
         <Footer/>
@@ -20,8 +20,17 @@ export default {
 
     data() {
         return {
-            
+                backgroundImage: "url(" + require("@/public/3.png") + ")",
         }
+    },
+    mounted() {
+        this.setBodyBackGround()
+    },
+    methods: {
+         setBodyBackGround () {
+            document.body.style.backgroundSize = '100%'
+            document.body.style.backgroundImage = this.backgroundImage
+      },
     },
     
 }
