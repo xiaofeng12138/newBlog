@@ -38,7 +38,6 @@ export default {
     },
 
     mounted() {
-        this.fn()
     },
     methods: {
       

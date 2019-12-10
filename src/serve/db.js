@@ -18,9 +18,26 @@ let userSchema = new mongoose.Schema({
   versionKey:false
  })
 
- const User = mongoose.model('user',userSchema)
 
- const Models = { User
+ //设置文章的Schema
+let articleSchema = new mongoose.Schema({
+    title:{type:String,required:true},  //文章作者
+    author:{                            //文章作者
+        type:String,
+        ref:'user'
+    },
+    time:{type:String,required:true},  //文章发布时间
+    content:{type:String,required:true}, //文章内容
+    artdesc:{type:String,required:true}, //文章描述
+    artType:{type:String,required:true},  //文章类型
+},{
+  versionKey:false
+ })
+
+ const User = mongoose.model('user',userSchema)
+ const Article = mongoose.model('article',articleSchema)
+
+ const Models = { User,Article
    
 }
 

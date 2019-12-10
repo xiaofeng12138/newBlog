@@ -34,6 +34,18 @@ const routes = [
 
    {path:'/login',name: "Login", component:()=>import("@/views/login")},
 
+   //后台管理部分
+
+   {path:'/admin',name: "Admin", component:()=>import("@/views/admin")},
+   {path:'/artManage',name: "ArtMangae", 
+   component:()=>import("@/views/admin"),
+   children:[
+      {path:'/artSubmit',name: "ArtSubmit", component:()=>import("@/views/admin/artManage/artsubmit.vue")},
+      {path:'/artSearch',name: "ArtSearch", component:()=>import("@/views/admin/artManage/artSearch.vue")},
+     
+  ]
+  },
+
 
   {path:'*',name: "Not", component:()=>import("@/views/404.vue")}
 ];

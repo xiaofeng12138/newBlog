@@ -2,8 +2,8 @@
     <div class="index">
        <div class="header">
            <div class="nav">
-            <el-row :gutter="20">
-                <el-col :span="18">
+            <el-row :gutter="10">
+                <el-col :span="16">
                     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router>
                 <el-menu-item index="index">主页</el-menu-item>
                 <el-submenu index="exhibition">
@@ -17,10 +17,11 @@
                 <el-menu-item index="myselfInfo">博主简介</el-menu-item>
             </el-menu>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span="8">
                     <div class='login'>
                         <div v-if = "Login"> 
                             <span>欢迎您：{{Username}}</span>
+                            <span @click='admin'>后台管理</span>
                             <span @click='logout'>退出</span>
                         </div>
                         <div v-else> 
@@ -71,6 +72,11 @@ export default {
              }).catch(() => {
             });
           
+        },
+
+        //后台管理页面
+        admin(){
+            this.$router.push('/admin')
         }
     },
     
@@ -92,7 +98,7 @@ export default {
 
             .el-menu-item{
                 font-size: 16px;
-                padding: 0 60px;
+                padding: 0 50px;
                 
             }
             .el-menu.el-menu--horizontal{

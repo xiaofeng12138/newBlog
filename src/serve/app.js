@@ -65,6 +65,113 @@ app.use('/login',(req,res,next)=>{
    })
 })
 
+//文章发表模块
+
+app.use('/AddArticle',(req,res)=>{
+   let { title,author,time,content,artdesc,artType } = req.body;
+   console.log(req.body)
+   db.User.find({username:author},(err,docs)=>{
+     if(err){
+      res.send({msg:'服务器错误，请重试',code:'500'})
+      return
+     }
+     if(docs.length == '0'){
+        //console.log(docs)
+        res.send({msg:'该用户不存在请注册后再发布',code:'500'})
+        return
+     }else{
+      db.Article.create({
+         title,
+         author,
+         time,
+         content,
+         artdesc,
+         artType
+      }).then((resp)=>{
+           res.send({msg:'文章发表成功',code:'200'})
+      }).catch((err)=>{
+         res.send({msg:'文章发表失败',code:'500'})
+      })
+     }
+   })
+
+})
+
+//文章列表返回
+
+app.use('/articleList',(req,res)=>{
+   let count = 0
+    db.Article.find().countDocuments().then((r)=>{
+      count = r
+      let page = req.body.page ;
+      db.Article.find()
+      .sort({time:-1})
+      .skip(10*(page - 1))     //跳过多少页
+      .limit(10)         //每页显示几条
+      .then((resp)=>{
+         res.send({data:resp,msg:'请求成功',code:'200',count:count})
+      }).catch((err)=>{
+         res.send({msg:'请求失败',code:'500'})
+         console.log(err)
+      })
+      }).catch((err)=>{
+         res.send({msg:'请求失败',code:'500'})
+         return err
+      }) 
+   // console.log(count)
+   
+})
+
+//文章删除接口
+
+app.use('/delArticle',(req,res)=>{
+   let id = req.body.id
+   db.Article.remove({_id:id}).then((resp)=>{
+      //console.log(resp)
+      res.send({msg:'数据删除成功',code:'200'})
+   }).catch((err)=>{
+      res.send({msg:'数据删除失败',code:'500'})
+      return err
+   })
+})
+
+
+//测试接口
+
+app.use('/test',(req,res)=>{
+   let time =  req.body.time 
+
+   db.Article.find({"time":{$regex: time }},(err,docs)=>{    //模糊查询
+      if(err){ 
+         console.log(err)
+         return false
+      }
+     console.log(docs)
+     console.log(docs.length)
+   })
+   
+})
+
+app.use('/testt',(req,res)=>{
+   let startTime = req.body.start
+   let endTime = req.body.end
+   console.log(endTime,startTime)
+
+   db.Article.find({"time":{"$gte": startTime}},(err,docs)=>{    //模糊查询   , "$lt" :endTime
+      if(err){ 
+         console.log(err)
+         return false
+      }
+   //   console.log(docs)
+   //   console.log(docs.length)
+   })
+   
+})
+
+
+
+
+
 app.listen(5050,()=>{
     console.log('项目启动成功，监听在5050端口！！！');
     console.log(db.User)

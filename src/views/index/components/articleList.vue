@@ -8,97 +8,78 @@
         </el-breadcrumb>
 
         <!-- 文章列表 -->
-        <div class="artList">
+        <div class="artList" v-for="(item,index) in ArtInfoList" :key="index">
             <div class="a_left">
                 <img src="@/public/girl.jpg" alt="">
             </div>
             <div class="a_right">
                 <el-row :gutter='10'>
-                    <el-col :span="8"><div class="artType"> WebPack+Node.js</div></el-col>
-                    <el-col :span="16"><div class="artTitle">  假装这是一条很正经的文章标题 </div></el-col>
+                    <el-col :span="8"><div class="artType">{{ item.artType }}</div></el-col>
+                    <el-col :span="16"><div class="artTitle">  {{ item.title}} </div></el-col>
                 </el-row>
                 <div class="artContent">
-                     后来才知道这是不可能的，除非把无常彻底赶到太平洋去。再后来又发现，这不是不可能，而是天大的无知，所以这个梦想注定智商情商永远欠费。再再后来又又发现，常的世界，其实有很多善良的人，他们从来不会把残的世界踩在脚底下，反而给予更多的温暖和帮助，只是有时候被世俗给连累了而已。再再再后来又又又发现，从哲学的角度欣赏，这个世界只有地球在运动。从心里学的角度诊断，只有迂腐的观念在心脏边缘不停地搬弄。从天文学的高度审视，只有狭隘的卑微在黑洞里爬不出来。
+                     {{item.artdesc}}
                 </div>
                 <div class="artBottom">
                     <el-row :gutter='20'>
                         <el-col :span="10"><div class="artTime"> 
                            <i class="iconfont icon-shizhong"></i>
-                            2019-12-26 13:15:15</div></el-col>
+                            {{item.time}}</div></el-col>
                         <el-col :span="8"><div class="artAuthor"> 
-                            <i class="iconfont icon-yonghu"></i> Xiao Feng </div></el-col>
+                            <i class="iconfont icon-yonghu"></i> {{item.author}}</div></el-col>
                         <el-col :span="6"><div class="artDetail" @click="readInfo">  阅读详情>> </div></el-col>
                     </el-row>
                 </div>
             </div>
         </div>
-         <div class="artList">
-            <div class="a_left">
-                <img src="@/public/girl.jpg" alt="">
-            </div>
-            <div class="a_right">
-                <el-row :gutter='10'>
-                    <el-col :span="8"><div class="artType"> WebPack+Node.js</div></el-col>
-                    <el-col :span="16"><div class="artTitle">  假装这是一条很正经的文章标题 </div></el-col>
-                </el-row>
-                <div class="artContent">
-                     后来才知道这是不可能的，除非把无常彻底赶到太平洋去。再后来又发现，这不是不可能，而是天大的无知，所以这个梦想注定智商情商永远欠费。再再后来又又发现，常的世界，其实有很多善良的人，他们从来不会把残的世界踩在脚底下，反而给予更多的温暖和帮助，只是有时候被世俗给连累了而已。再再再后来又又又发现，从哲学的角度欣赏，这个世界只有地球在运动。从心里学的角度诊断，只有迂腐的观念在心脏边缘不停地搬弄。从天文学的高度审视，只有狭隘的卑微在黑洞里爬不出来。
-                </div>
-                <div class="artBottom">
-                    <el-row :gutter='20'>
-                        <el-col :span="10"><div class="artTime"> 
-                           <i class="iconfont icon-shizhong"></i>
-                            2019-12-26 13:15:15</div></el-col>
-                        <el-col :span="8"><div class="artAuthor"> 
-                            <i class="iconfont icon-yonghu"></i> Xiao Feng </div></el-col>
-                        <el-col :span="6"><div class="artDetail" @click="readInfo">  阅读详情>> </div></el-col>
-                    </el-row>
-                </div>
-            </div>
-            
-        </div>
-         <div class="artList">
-            <div class="a_left">
-                <img src="@/public/girl.jpg" alt="">
-            </div>
-            <div class="a_right">
-                <el-row :gutter='10'>
-                    <el-col :span="8"><div class="artType"> WebPack+Node.js</div></el-col>
-                    <el-col :span="16"><div class="artTitle">  假装这是一条很正经的文章标题 </div></el-col>
-                </el-row>
-                <div class="artContent">
-                     后来才知道这是不可能的，除非把无常彻底赶到太平洋去。再后来又发现，这不是不可能，而是天大的无知，所以这个梦想注定智商情商永远欠费。再再后来又又发现，常的世界，其实有很多善良的人，他们从来不会把残的世界踩在脚底下，反而给予更多的温暖和帮助，只是有时候被世俗给连累了而已。再再再后来又又又发现，从哲学的角度欣赏，这个世界只有地球在运动。从心里学的角度诊断，只有迂腐的观念在心脏边缘不停地搬弄。从天文学的高度审视，只有狭隘的卑微在黑洞里爬不出来。
-                </div>
-                <div class="artBottom">
-                    <el-row :gutter='20'>
-                        <el-col :span="10"><div class="artTime"> 
-                           <i class="iconfont icon-shizhong"></i>
-                            2019-12-26 13:15:15</div></el-col>
-                        <el-col :span="8"><div class="artAuthor"> 
-                            <i class="iconfont icon-yonghu"></i> Xiao Feng </div></el-col>
-                        <el-col :span="6"><div class="artDetail" @click="readInfo">  阅读详情>> </div></el-col>
-                    </el-row>
-                </div>
-            </div>
-            
-        </div>
-       
-        
+
+        <el-pagination
+            background
+            layout="prev, pager, next,total"
+            :total="this.total"
+            @current-change="this.currentPageChange"
+            >
+        </el-pagination>
     </div>
 </template>
 
 <script>
+import {ArticleList} from '@/api/login'
 export default {
     data() {
         return {
-            
+            ArtInfoList:[],
+            total:0
         }
     },
 
-    methods: {
-        readInfo(){
-            console.log(1)
-            this.$router.push('/artDetailInfo')
+    mounted() {
+        this.getInfoList(1)
+    },
+
+    methods: {  
+     getInfoList(page){
+         let data = {
+             page:page
+         }
+       ArticleList(data).then((res)=>{
+          console.log(res.data.data)
+          console.log(res.data.count)
+          this.ArtInfoList = res.data.data
+          this.total = res.data.count
+       }).catch((err)=>{
+        console.log(err)
+       })
+     },
+
+      currentPageChange(currentPage) {
+        this.getInfoList(currentPage);
+    },
+
+
+    readInfo(){
+           console.log(1)
+           this.$router.push('/artDetailInfo')
         }
     },
     
@@ -183,12 +164,13 @@ export default {
                    text-align: center;
                    cursor: pointer;
                 }
-
-            }
+              }
            
             }
-        
     }
+    .el-pagination{
+    text-align: center;
+   }
 }
 </style>
 
