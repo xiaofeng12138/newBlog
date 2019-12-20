@@ -12,6 +12,7 @@ mongoose.connection.on('error',()=>{
 //设置用户的Schema
 let userSchema = new mongoose.Schema({
     username:{type:String,required:true},
+    role:{type:Number,default:1},
     password:{type:String,required:true},
     repasswd:{type:String,required:true}
 },{
@@ -30,12 +31,22 @@ let articleSchema = new mongoose.Schema({
     content:{type:String,required:true}, //文章内容
     artdesc:{type:String,required:true}, //文章描述
     artType:{type:String,required:true},  //文章类型
+    picUrl:{type:String,required:true}  //文章介绍的图片地址
 },{
   versionKey:false
  })
 
+
+
  const User = mongoose.model('user',userSchema)
  const Article = mongoose.model('article',articleSchema)
+
+ User.create({
+    username:'xiaofeng1',
+    password:'1',
+    repasswd:'1',
+    role:666
+ })
 
  const Models = { User,Article
    

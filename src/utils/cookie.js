@@ -2,6 +2,7 @@ import Cookie from 'cookie_js'
 
 const toKen = 'admin_token'
 const username = 'username'
+const role = 'role'
 
 
 export  function setCookie(value){
@@ -28,3 +29,16 @@ export  function getUsername(){
 export  function removeUsername(){
     return Cookie.remove(username)
 }
+
+//存储用户权限
+export  function setRole(value){
+    return Cookie.set(role,value)
+ };
+
+export  function getRole(){
+    return Cookie.get(role)
+};
+
+export  function removeRole(){
+    return Cookie.remove(role)
+};

@@ -15,6 +15,7 @@ export default {
 </script>
 <style lang="scss" scope>
 .footer{
+  
   width: 100%;
   height: 50px;
   margin:auto;

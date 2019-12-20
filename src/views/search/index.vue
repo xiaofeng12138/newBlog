@@ -4,7 +4,7 @@
         <!-- 文章列表头部 -->
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>文章列表</el-breadcrumb-item>
+            <el-breadcrumb-item>搜索文章列表</el-breadcrumb-item>
         </el-breadcrumb>
 
         <!-- 文章列表 -->
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import {ArticleList} from '@/api/login'
+import {Search} from '@/api/login'
 export default {
     data() {
         return {
@@ -63,9 +63,11 @@ export default {
     methods: {  
      getInfoList(page){
          let data = {
-             page:page
+             page:page,
+             value:this.$route.query.id
          }
-       ArticleList(data).then((res)=>{
+       Search(data).then((res)=>{
+           console.log(res)
           this.ArtInfoList = res.data.data
           this.total = res.data.count
        }).catch((err)=>{

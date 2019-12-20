@@ -3,10 +3,10 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/",name:'index',redirect:"/index",component:()=>import("@/views/layout"),
-    children:[
-      {path:"/index",name:"Index",component:() => import ('../views/index/index.vue'),}
-          ]
+   { path: "/",name:'index',redirect:"/index",component:()=>import("@/views/layout"),
+     children:[
+       {path:"/index",name:"Index",component:() => import ('../views/index/index.vue'),}
+         ]
   },
 
   { path: "/study",name: "Study",component:()=>import("@/views/layout"),
@@ -29,6 +29,12 @@ const routes = [
   { path: "/artDetail",name: "ArtDetail",component:()=>import("@/views/layout"),
     children:[
       {path:'/artDetailInfo',name: "ArtDetailInfo", component:()=>import("@/views/artDetail")},
+    ]
+  },
+  //搜索路由
+  { path: "/search",name: "Search",component:()=>import("@/views/layout"),
+    children:[
+      {path:'/searchInfo',name: "SearchInfo", component:()=>import("@/views/search")},
     ]
   },
 

@@ -8,7 +8,7 @@ const BASEURL = process.env.NODE_ENV === 'production' ? '' : '/api'; //判断是
 
 const service = axios.create({
   baseURL: BASEURL,
-  timeout: 50000,
+  timeout: 500000,
 });
 
 

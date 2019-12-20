@@ -49,6 +49,25 @@ export function DelArticle(data){
     })
 }
 
+//文章详情接口
+export function ArtDetail(data){
+    return service.request({
+        method: "post",
+        url: "/artDetail",
+        data
+    })
+}
+
+//文章搜索接口
+export function Search(data){
+    return service.request({
+        method: "post",
+        url: "/search",
+        data
+    })
+}
+
+
 //测试数据接口
 export function Test(data){
     return service.request({
