@@ -103,7 +103,30 @@ export default {
               passwords: [
                   { validator: checkPasswords, trigger: 'blur' } //重复密码
               ],
-            }
+            },
+            time:new Date().getFullYear() +
+              "-" +
+              (new Date().getMonth() + 1) +
+              "-" +
+              new Date().getDate() +
+              " " +
+              (function() {
+                return new Date().getHours() < 10
+                  ? "0" + new Date().getHours()
+                  : new Date().getHours();
+              })() +
+              ":" +
+              (function() {
+                return new Date().getMinutes() < 10
+                  ? "0" + new Date().getMinutes()
+                  : new Date().getMinutes();
+              })() +
+              ":" +
+              (function() {
+                return new Date().getSeconds() < 10
+                  ? "0" + new Date().getSeconds()
+                  : new Date().getSeconds();
+              })(),
          };
     },
     created() {
@@ -160,6 +183,7 @@ export default {
                   username:this.ruleForm.email,
                   password:this.ruleForm.password,
                   repasswd:this.ruleForm.passwords,
+                  time:this.time
                 }
                  Reg(data).then((res)=>{
                    if(res.data.code =='200'){

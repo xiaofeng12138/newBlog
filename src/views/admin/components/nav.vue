@@ -2,7 +2,6 @@
     <div class="nav">
          <div class="img">
             <img src="@/assets/logo.png" alt="" @click="goHome">
-
             <el-menu
             default-active="2"
             class="el-menu-vertical-demo"
@@ -14,7 +13,7 @@
             <el-submenu index="1">
                 <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>文章管理</span>
+                <span>后台首页</span>
                 </template>
                 <el-menu-item index="artSubmit">文章发布</el-menu-item>
                 <el-menu-item index="artSearch">文章查询</el-menu-item>
@@ -22,8 +21,8 @@
             </el-submenu>
             <el-submenu index="2">
                 <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>信息管理</span>
+                <i class="el-icon-tickets"></i>
+                <span>文章管理</span>
                 </template>
                 <el-menu-item index="artSubmit">文章发布</el-menu-item>
                 <el-menu-item index="artSearch">文章查询</el-menu-item>
@@ -31,15 +30,12 @@
             </el-submenu>
              <el-submenu index="3">
                 <template slot="title">
-                <i class="el-icon-location"></i>
+                <i class="el-icon-printer"></i>
                 <span>用户管理</span>
                 </template>
-                <el-menu-item index="artSubmit">文章发布</el-menu-item>
-                <el-menu-item index="artSearch">文章查询</el-menu-item>
-               
+                <el-menu-item index="queryUsers">用户查询</el-menu-item>
             </el-submenu>
             </el-menu>
-
 
 
         </div>

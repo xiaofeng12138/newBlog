@@ -4,6 +4,9 @@ import router from "./router";
 import store from "./store";
 import Axios from 'axios';
 
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 //  import './router/premit'
 
 Vue.prototype.$Axios = Axios;

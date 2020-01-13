@@ -68,6 +68,26 @@ export function Search(data){
 }
 
 
+//用户查询接口
+export function QueryUser(data){
+    return service.request({
+        method: "post",
+        url: "/queryUser",
+        data
+    })
+}
+
+//用户删除接口
+export function DelUsers(data){
+    return service.request({
+        method: "post",
+        url: "/delUser",
+        data
+    })
+}
+
+
+
 //测试数据接口
 export function Test(data){
     return service.request({

@@ -9,7 +9,7 @@
         </div>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
             <el-form-item label="文章分类" prop="artType">
-                    <el-select v-model="ruleForm.artType" placeholder="请选择活动区域">
+                    <el-select v-model="ruleForm.artType" placeholder="请选择文章类型">
                     <el-option label="HTML" value="HTML"></el-option>
                     <el-option label="CSS" value="CSS"></el-option>
                     <el-option label="JavaScript" value="JavaScript"></el-option>

@@ -27,7 +27,7 @@ app.use(session({
 
 //注册模块
 app.use('/reg',(req,res)=>{
-   let { username,password,repasswd } = req.body;
+   let { username,password,repasswd,time} = req.body;
    db.User.findOne({username}).then((users)=>{
       if(users){
          res.send({msg:'用户名已存在',code:'500'})
@@ -37,7 +37,8 @@ app.use('/reg',(req,res)=>{
          db.User.create({
             username,
             password,
-            repasswd
+            repasswd,
+            time
          })
       }
    })
@@ -127,7 +128,6 @@ app.use('/articleList',(req,res)=>{
          res.send({msg:'请求失败',code:'500'})
          return err
       }) 
-   // console.log(count)
    
 })
 
@@ -215,6 +215,39 @@ app.use('/search',(req,res)=>{
    
 })
 
+
+//用户查询接口
+app.use('/queryUser',(req,res)=>{
+   let count = 0
+    db.User.find().countDocuments().then((r)=>{
+      count = r
+      let page = req.body.page ;
+      db.User.find()
+      .sort({time:-1})
+      .skip(10*(page - 1))     //跳过多少页
+      .limit(10)         //每页显示几条
+      .then((resp)=>{
+         res.send({data:resp,msg:'请求成功',code:'200',count:count})
+      }).catch((err)=>{
+         res.send({msg:'请求失败',code:'500'})
+      })
+      }).catch((err)=>{
+         res.send({msg:'请求失败',code:'500'})
+         return err
+      }) 
+})
+
+
+//用户删除接口
+app.use('/delUser',(req,res)=>{
+   let id = req.body.id
+   db.User.deleteOne({_id:id}).then((resp)=>{
+      res.send({msg:'数据删除成功',code:'200'})
+   }).catch((err)=>{
+      res.send({msg:'数据删除失败',code:'500'})
+      return err
+   })
+})
 
 
 
