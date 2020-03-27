@@ -7,7 +7,7 @@
                            <i class="iconfont icon-shizhong"></i>
                             {{arrList.time}} </div></el-col>
                         <el-col :span="8"><div class="artTime"> 
-                            <i class="iconfont icon-yonghu"></i> {{arrList.author}}</div></el-col>
+                            <i class="iconfont icon-yonghu"></i> {{username}}</div></el-col>
                         <el-col :span="6"><div class="artTime"> 
                             <i class="iconfont icon-fenlei"></i>{{arrList.artType}}</div></el-col>
                 </el-row>
@@ -24,7 +24,8 @@ import  {ArtDetail} from '@/api/login'
 export default {
     data() {
         return {
-            arrList:[]
+            arrList:[],
+            username:''
             
         }
     },
@@ -38,6 +39,7 @@ export default {
             }
             ArtDetail(data).then((res)=>{
                 this.arrList = res.data.data
+                this.username = res.data.data.author.username
                 if( res.data.code !== '200'){
                   this.$message.error(res.data.msg)
                 }

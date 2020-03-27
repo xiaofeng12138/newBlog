@@ -39,7 +39,7 @@
 <script>
 import { stripscript , checkRegEmial ,checkRegPass,checkRegRepass} from '@/utils/reg'
 import {Login,Reg} from '@/api/login.js';
-import  { setCookie ,setUsername,setRole } from '@/utils/cookie'
+import  { setCookie ,setUsername,setRole,setInfo } from '@/utils/cookie'
 
 export default {
     data() {
@@ -166,6 +166,7 @@ export default {
                      setCookie(res.data.token)
                      setUsername(res.data.username)
                      setRole(res.data.role)
+                     setInfo('userId',res.data.userId)
                      this.$store.commit('set_Token',res.data.token)
                      this.$store.commit('set_userName',res.data.username)
                      this.$router.push('/index')

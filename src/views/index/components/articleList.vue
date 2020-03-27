@@ -27,7 +27,7 @@
                            <i class="iconfont icon-shizhong"></i>
                             {{item.time}}</div></el-col>
                         <el-col :span="8"><div class="artAuthor"> 
-                            <i class="iconfont icon-yonghu"></i> {{item.author}}</div></el-col>
+                            <i class="iconfont icon-yonghu"></i> {{item.author.username}}</div></el-col>
                         <el-col :span="6"><div class="artDetail" @click="readInfo(item._id)">  阅读详情>> </div></el-col>
                     </el-row>
                 </div>

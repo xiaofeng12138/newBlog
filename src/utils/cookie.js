@@ -42,3 +42,13 @@ export  function getRole(){
 export  function removeRole(){
     return Cookie.remove(role)
 };
+
+
+//存储用户id
+
+export  function setInfo(item,value){
+    return Cookie.set(item,value)
+};
+export  function getInfo(item){
+    return Cookie.get(item)
+};

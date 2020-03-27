@@ -7,7 +7,7 @@ import Axios from 'axios';
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 
-//  import './router/premit'
+  import './router/premit'
 
 Vue.prototype.$Axios = Axios;
 

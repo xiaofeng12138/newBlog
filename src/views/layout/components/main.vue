@@ -17,7 +17,6 @@
             </el-tabs>
              
          </div>
-
           <div class="s_top">
                <el-tabs v-model="activeName">
                   <el-tab-pane name="first">

@@ -17,7 +17,6 @@
                 </template>
                 <el-menu-item index="artSubmit">文章发布</el-menu-item>
                 <el-menu-item index="artSearch">文章查询</el-menu-item>
-               
             </el-submenu>
             <el-submenu index="2">
                 <template slot="title">

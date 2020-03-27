@@ -60,7 +60,7 @@
 </template>
 <script>
 import E from "wangeditor";
-import {getUsername,getRole} from '@/utils/cookie'
+import {getUsername,getRole,getInfo} from '@/utils/cookie'
 import { AddArticle } from '@/api/login'
 export default {
      data() {
@@ -179,7 +179,7 @@ export default {
             }
             let data = {
               title:this.ruleForm.title,   //文章标题
-              author:getUsername(),
+              author:getInfo('userId'),
               content:this.editorContent,
               artdesc:this.ruleForm.artDesc,
               artType:this.ruleForm.artType,
@@ -193,7 +193,6 @@ export default {
               }else{
                 this.$message.error(res.data.msg)
               }
-              
             }).catch((err)=>{
               console.log(err)
             })

@@ -25,7 +25,7 @@ let userSchema = new mongoose.Schema({
 let articleSchema = new mongoose.Schema({
     title:{type:String,required:true},  //文章作者
     author:{                            //文章作者
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         ref:'user'
     },
     time:{type:String,required:true},  //文章发布时间
@@ -83,9 +83,7 @@ let articleSchema = new mongoose.Schema({
 
 
 
- const Models = { User,Article
-   
-}
+ const Models = { User,Article}
 
 module.exports = Models;
 

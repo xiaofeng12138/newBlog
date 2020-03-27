@@ -50,7 +50,6 @@ app.use('/reg',(req,res)=>{
 //登录模块
 app.use('/login',(req,res,next)=>{
   let { username,password } = req.body;
-
    db.User.findOne({username,password},(err,docs)=>{
       if(err){
          res.send(err)
@@ -61,6 +60,8 @@ app.use('/login',(req,res,next)=>{
           return false
       }
       if(docs){
+         console.log(docs)
+         let userId = docs._id;
          let content = docs.username
          let role = docs.role
          let secretOrPrivateKey = "123456" // 这是加密的key（密钥） 
@@ -68,7 +69,7 @@ app.use('/login',(req,res,next)=>{
             content,
             secretOrPrivateKey
         }, 'my_token', { expiresIn: '0.5h' });
-         res.send({msg:'登录成功',code:'200',token:token,username:content,role:role})
+         res.send({msg:'登录成功',code:'200',token:token,username:content,role:role,userId:userId})
       }
       else {
          res.send({msg:'用户名或密码错误',code:'500'})
@@ -80,7 +81,7 @@ app.use('/login',(req,res,next)=>{
 
 app.use('/AddArticle',(req,res)=>{
    let { title,author,time,content,artdesc,artType,picUrl } = req.body;
-   db.User.find({username:author},(err,docs)=>{
+   db.User.find({_id:author},(err,docs)=>{
      if(err){
       res.send({msg:'服务器错误，请重试',code:'500'})
       return
@@ -109,20 +110,20 @@ app.use('/AddArticle',(req,res)=>{
 })
 
 //文章列表返回
-
 app.use('/articleList',(req,res)=>{
-   let count = 0
+    let count = 0
     db.Article.find().countDocuments().then((r)=>{
       count = r
       let page = req.body.page ;
-      db.Article.find()
+      db.Article.find().populate('author')
       .sort({time:-1})
-      .skip(10*(page - 1))     //跳过多少页
-      .limit(10)         //每页显示几条
+      .skip(10*(page - 1))  //跳过多少页
+      .limit(10)            //每页显示几条
       .then((resp)=>{
-         res.send({data:resp,msg:'请求成功',code:'200',count:count})
+         res.send({data:resp,msg:'请求成功',code:'200',count})
       }).catch((err)=>{
          res.send({msg:'请求失败',code:'500'})
+         return err;
       })
       }).catch((err)=>{
          res.send({msg:'请求失败',code:'500'})
@@ -152,7 +153,7 @@ app.use('/artDetail',(req,res)=>{
       res.send({data:[],msg:'未查询到数据',code:'500'})
       return false
    }
-   db.Article.findOne({_id:id}).then((resp)=>{
+   db.Article.findOne({_id:id}).populate('author').then((resp)=>{
        res.send({data:resp,msg:'数据查询成功',code:'200'})
    }).catch((err)=>{
       res.send({data:[],msg:'未查询到数据',code:'500'})
@@ -178,7 +179,6 @@ const upload = multer({
    storage:storage
 })
 app.use('/upload',(req,res)=>{
-   //console.log(req.body)
  upload.single('file')(req,res,(err)=>{
   if(err){
     return res.send({msg:'文件上传失败',code:'500'})
@@ -191,14 +191,13 @@ app.use('/upload',(req,res)=>{
 
 
 //文章搜索接口
-
 app.use('/search',(req,res)=>{
     let count = 0
     let value = req.body.value;  //搜索关键字
     db.Article.find({"artdesc":{$regex: value }}).countDocuments().then((r)=>{  
       count = r
       let page = req.body.page ;   //搜索分页
-      db.Article.find({"artdesc":{$regex: value }})   //模糊查询文章表中artdesc字段的内容
+      db.Article.find({"artdesc":{$regex: value }}).populate('author')  //模糊查询文章表中artdesc字段的内容
       .sort({time:-1})
       .skip(10*(page - 1))     //跳过多少页
       .limit(10)         //每页显示几条
@@ -258,11 +257,8 @@ app.use('/test',(req,res)=>{
 
    db.Article.find({"time":{$regex: time }},(err,docs)=>{    //模糊查询
       if(err){ 
-         console.log(err)
          return false
       }
-     console.log(docs)
-     console.log(docs.length)
    }).then(()=>{})
    
 })
@@ -270,11 +266,9 @@ app.use('/test',(req,res)=>{
 app.use('/testt',(req,res)=>{
    let startTime = req.body.start
    let endTime = req.body.end
-   console.log(endTime,startTime)
 
    db.Article.find({"time":{"$gte": startTime}},(err,docs)=>{    //模糊查询   , "$lt" :endTime
       if(err){ 
-         console.log(err)
          return false
       }
    //   console.log(docs)

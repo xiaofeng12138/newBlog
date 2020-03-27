@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-   { path: "/",name:'index',redirect:"/index",component:()=>import("@/views/layout"),
+  { path: "/",name:'index',redirect:"/index",component:()=>import("@/views/layout"),
      children:[
        {path:"/index",name:"Index",component:() => import ('../views/index/index.vue'),}
          ]
@@ -64,9 +64,6 @@ const routes = [
       {path:'/queryUsers',name: "queryUsers", component:()=>import("@/views/admin/userManage/usersManage.vue")},
      ]
   },
-  
-
-
   {path:'*',name: "Not", component:()=>import("@/views/404.vue")}
 ];
 

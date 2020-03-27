@@ -8,21 +8,20 @@ import access from './access'
 
 
 router.beforeEach((to,from,next)=>{
+  console.log(to.path)
    if(getCookie()){
      next()
-      //  console.log(Boolean(to.path === '/admin'))
-      //  if(to.path === '/admin' || '/artSubmit' || 'artSearch'){
-     
-      //     if(getRole() > 1){
-      //       next()
-      //     }else{
-      //       return false
-      //     }
-      //  }else{
-      //   next('/index')   //路由指向 不存在直接返回登录页
-      //   Message.error('您暂无权限访问该页面')
+       if(to.path === '/admin' || '/artSubmit' || 'artSearch'){
+          if(getRole() > 1){
+            next()
+          }else{
+            return false
+          }
+       }else{
+        next('/index')   //路由指向 不存在直接返回登录页
+        Message.error('您暂无权限访问该页面')
 
-      //  }
+       }
 
     //    if(to.path == '/index'){
     //      if(access.indexOf('/admin') == -1){
@@ -40,7 +39,7 @@ router.beforeEach((to,from,next)=>{
         //      Message.error('您暂无权限访问该页面')
         //     }
 
-    //    }
+    //  }
       }else{
           console.log(122)
       }

@@ -21,7 +21,7 @@
             width="180">
             </el-table-column>
             <el-table-column
-            prop="author"
+            prop="author.username"
             label="文章作者"
             align="center"
             width="180">
@@ -83,7 +83,7 @@ export default {
              page:page
          }
             ArticleList(data).then((res)=>{
-              console.log(res)
+                console.log(res)
                this.tableData = res.data.data
                this.total = res.data.count
 

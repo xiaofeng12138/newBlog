@@ -123,13 +123,11 @@ export default {
    .header{
         display: flex;
         background-color: #fff;
-       
        .nav{
            width: 65%;
            margin-left: 20%;
             .el-menu-item{
                 font-size: 16px;
-                // padding: 0 50px;
                 
             }
             .el-menu.el-menu--horizontal{

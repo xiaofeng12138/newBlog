@@ -86,7 +86,7 @@ export default {
         fn(page){
             let data = {
              page:page
-         }
+          }
             QueryUser(data).then((res)=>{
                this.tableData = res.data.data
                this.total = res.data.count
